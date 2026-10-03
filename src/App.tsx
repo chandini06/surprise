@@ -3,8 +3,13 @@ import photo1 from "./assets/photo1.jpg";
 import photo2 from "./assets/photo2.jpg";
 import photo3 from "./assets/photo3.jpg";
 
-const DEFAULTS = [photo1, photo2, photo3];
+const DEFAULTS = [photo1, photo2, photo3] as const;
 const CAPTIONS = ["Us ❤️", "My favorite memories 🥹", "My favorite person ❤️"];
+
+const isValidImageSource = (value: string | null | undefined) => {
+  if (!value) return false;
+  return /^data:image\//.test(value) || /^\//.test(value) || /^https?:\/\//.test(value);
+};
 
 function Btn({ children, onClick }: { children: React.ReactNode; onClick: () => void }) {
   return (
@@ -86,10 +91,13 @@ function useMusic() {
 }
 
 function Gallery({ onNext }: { onNext: () => void }) {
-  const [photos, setPhotos] = useState<string[]>(DEFAULTS);
+  const [photos, setPhotos] = useState<string[]>([...DEFAULTS]);
 
   useEffect(() => {
-    const saved = DEFAULTS.map((d, i) => localStorage.getItem(`photo-${i}`) || d);
+    const saved = DEFAULTS.map((defaultSrc, i) => {
+      const stored = localStorage.getItem(`photo-${i}`);
+      return isValidImageSource(stored) ? stored : defaultSrc;
+    });
     setPhotos(saved);
   }, []);
 
