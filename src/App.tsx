@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import photo1 from "./assets/photo1.jpg";
-import photo2 from "./assets/photo2.jpg";
-import photo3 from "./assets/photo3.jpg";
+import photo1 from "./assets/Photo1.jpeg";
+import photo2 from "./assets/Photo2.jpeg";
+import photo3 from "./assets/Photo3.jpeg";
 
 const DEFAULTS = [photo1, photo2, photo3] as const;
 const CAPTIONS = ["Us ❤️", "My favorite memories 🥹", "My favorite person ❤️"];
