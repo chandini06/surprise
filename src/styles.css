@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.97 0.02 10);
+  --foreground: oklch(0.35 0.08 10);
+  --card: oklch(0.995 0.005 20);
+  --primary: oklch(0.68 0.16 10);
+  --primary-foreground: oklch(0.99 0.005 20);
+  --muted-foreground: oklch(0.55 0.06 10);
+  --accent: oklch(0.88 0.07 10);
+  --border: oklch(0.9 0.04 10);
+  --gradient-bg: radial-gradient(circle at 20% 10%, oklch(0.94 0.05 20), transparent 60%),
+    radial-gradient(circle at 80% 90%, oklch(0.93 0.05 350), transparent 60%), var(--background);
+  --shadow-soft: 0 20px 40px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--gradient-bg);
+  color: var(--foreground);
+  font-family: "Quicksand", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-script {
+  font-family: "Dancing Script", cursive;
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-primary-foreground {
+  color: var(--primary-foreground);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.bg-background {
+  background-color: var(--background);
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: float-up linear infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.7s ease-out;
+}
+
+.fade-in {
+  animation: fade-in 0.7s ease-out;
+}
+
+.zoom-in-95 {
+  animation: fade-in 0.7s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
